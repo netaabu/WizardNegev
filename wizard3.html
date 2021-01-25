@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wizard page 3</title>
+</head>
+<body>
+    <form action="" onsubmit="return false">
+        <div>
+            <label for="">IMAGE</label>
+            <input id="img" type="url">
+        </div>
+        <div>
+            <label for="">Hobbies</label>
+            <input  type="checkbox" value="Chess" >Chess</label>
+            <input  type="checkbox" value="Movies" >Movies</label>
+            <input  type="checkbox" value="Sport" >Sport</label>
+            <input  type="checkbox" value="Cars" >Cars</label>
+            <input  type="checkbox" value="Dolls" >Dolls</label>
+            
+        </div>
+
+        <button onclick="saveImg()">Submit</button>
+
+    </form>
+    
+    <button onclick="location.href ='wizard2.html'">Prev</button>
+    <button onclick>Next</button>
+
+
+    <script>
+        class Form{
+            constructor(part1, part2, part3){
+                this.part1 = part1;
+                this.part2 = part2;
+                this.part3 = part3;
+            }
+        }
+        const img = document.querySelector('#img');
+        const hobbies = document.querySelectorAll('checkbox');
+        const details = '';
+        const chosenHobbies = [];
+        for(const item of hobbies){
+            if(item.checked){
+                chosenHobbies.push(item.value);
+            }
+
+        }
+        
+
+        function saveImg() {
+             if(validateImg(img.value)){
+                 details.part3 = {img: image.value, hobbies: chosenHobbies};
+                 const detailsstring = JSON.stringify(details);
+                 localStorage.setItem('Details string', detailsstring);
+             }           
+}
+        }
+
+
+        function validateImg(img) {
+            if(img.length < 1){
+                alert("You have entered an invalid url!");
+                return false;  
+            }   
+            return true;                
+}
+
+    </script>
+</body>
+</html>
