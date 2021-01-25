@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wizard page 2</title>
+</head>
+<body>
+    <form action="" onsubmit="return false">
+        <div>
+            <label for="">City</label>
+            <input id="city" type="text">
+        </div>
+        <div>
+            <label for="">Street</label>
+            <input id="street" type="text">
+        </div>
+        <div>
+            <label for="">Number</label>
+            <input id="number"type="number">
+        </div>
+        <button onclick="saveDetails()">Submit</button>
+
+    </form>
+    
+    <button onclick="location.href ='wizard1.html'">Prev</button>
+    <button>Next</button>
+
+    <script>
+        class Form{
+            constructor(part1, part2, part3){
+                this.part1 = part1;
+                this.part2 = part2;
+                this.part3 = part3;
+            }
+        }
+        const city = document.querySelector('#city');
+        const street = document.querySelector('#street');
+        const number = document.querySelector('#number');
+
+        function ValidateCity(city) {
+            if(city.length < 3){
+                alert("You have entered an invalid city address!");
+                return false;
+            }
+                  
+}
+        function ValidateStreet(street){
+            if(street.length < 3){
+                alert("You have entered an invalid street address!");
+                return false;
+            } 
+
+        }
+
+        function ValidateNumber(number){
+            if(number < 1){
+                return false;
+            }
+            return true;
+        }
+
+        function saveDetails(){
+           
+            if(ValidateCity(city.value) && ValidateStreet(street.value) && ValidateNumber(number.value)){
+                
+              details.part2= {
+                  city: city.value,
+                  street: street.value,
+                  number: number.value
+              };
+
+                console.log(details);
+                const detailsstring = JSON.stringify(details);
+                localStorage.setItem('Details string', detailsstring);
+
+            }
+        }
+
+
+    </script>
+</body>
+</html>

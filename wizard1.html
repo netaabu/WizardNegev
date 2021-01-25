@@ -22,7 +22,8 @@
         <button onclick="saveDetails()">Submit</button>
 
     </form>
-    <button>Next</button>
+    <button onclick="doNext()">Next</button>
+
     <script>
         class Form{
             constructor(part1, part2, part3){
@@ -31,9 +32,16 @@
                 this.part3 = part3;
             }
         }
+        let details= "" ; 
         const name = document.querySelector('#name');
         const email = document.querySelector('#email');
         const age = document.querySelector('#age');
+
+        function doNext (){
+            if(details){
+                window.location.href = "wizard2.html";
+            }
+        }
 
         function ValidateEmail(mail) {
             if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail));
@@ -61,7 +69,7 @@
            
             if(ValidateName(name.value) && ValidateEmail(email.value) && ValidateBirthDate(age.value)){
                 
-                const details = new Form({name: name.value, email: email.value, birthdate: age.value});
+                details = new Form({name: name.value, email: email.value, birthdate: age.value});
                 console.log(details);
                 const detailsstring = JSON.stringify(details);
                 localStorage.setItem('Details string', detailsstring);
@@ -71,5 +79,5 @@
 
 
     </script>
-</body>name
+</body>
 </html>
