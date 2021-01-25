@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wizard page 3</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body>
     <form action="" onsubmit="return false">
@@ -26,7 +27,7 @@
     </form>
     
     <button onclick="location.href ='wizard2.html'">Prev</button>
-    <button onclick>Next</button>
+    <button onclick="moveToSummary()">Next</button>
 
 
     <script>
@@ -39,7 +40,7 @@
         }
         const img = document.querySelector('#img');
         const hobbies = document.querySelectorAll('checkbox');
-        const details = '';
+        let details = '';
         const chosenHobbies = [];
         for(const item of hobbies){
             if(item.checked){
@@ -47,16 +48,31 @@
             }
 
         }
+        window.addEventListener('load', () =>{
+            const temp = localStorage.getItem('Details string');
+            if(temp){
+                details = JSON.parse(temp);
+                if(!details.part2){
+                    window.location.href = 'wizard2.html';
+                }
+
+            }
+            else{
+                window.location.href = 'wizard2.html';
+            }
+
+
+        })
         
 
         function saveImg() {
              if(validateImg(img.value)){
-                 details.part3 = {img: image.value, hobbies: chosenHobbies};
+                 details.part3 = {img: img.value, hobbies: chosenHobbies};
                  const detailsstring = JSON.stringify(details);
                  localStorage.setItem('Details string', detailsstring);
              }           
 }
-        }
+        
 
 
         function validateImg(img) {
@@ -64,7 +80,13 @@
                 alert("You have entered an invalid url!");
                 return false;  
             }   
-            return true;                
+            return true;      
+            
+        function moveToSummary(){
+            if(details.part1 && details.part2 && details.part3){
+                window.location.href = "wizard3.html";
+            }
+        }
 }
 
     </script>

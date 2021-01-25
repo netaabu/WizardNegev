@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+<body>
+    <div>
+        
+    </div>
+    <button onclick="location.href ='wizard3.html'">Prev</button>
+    
+</body>
+<script>
+    class Form{
+            constructor(part1, part2, part3){
+                this.part1 = part1;
+                this.part2 = part2;
+                this.part3 = part3;
+            }
+        }
+     let details = '';
+    const container = document.querySelector('div');
+    window.addEventListener('load', () =>{
+            const temp = localStorage.getItem('Details string');
+            if(temp){
+                details = JSON.parse(temp);
+                if(!details.part3){
+                    window.location.href = 'wizard3.html';
+                }
+
+            }
+            else{
+                window.location.href = 'wizard3.html';
+            }
+
+
+        })
+    container.innerHTML =  `<div>
+            <label for="">Name</label>
+            <span>${details.part1.name}</span>
+        </div>
+        <div>
+            <label for="">Email</label>
+            <span>${details.part1.email}</span>
+        </div>
+        <div>
+            <label for="">Date of Birth</label>
+            <span>${details.part1.birthdate}</span>
+        </div>
+        <div>
+            <label for="">City</label>
+            <span>${details.part2.city}</span>
+        </div>
+        <div>
+            <label for="">Street</label>
+            <span>${details.part2.street}</span>
+        </div>
+        <div>
+            <label for="">Number of house</label>
+            <span>${details.part2.number}</span>
+        </div>
+        <div>
+            <label for="">Hobbies</label>
+            <span>${details.part3.hobbies}</span>
+        </div>
+        <div>
+            <img src="${details.part3.img}" alt="">
+        </div>`
+</script>
+</html>

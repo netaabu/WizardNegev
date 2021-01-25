@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wizard page 2</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body>
-    <form action="" onsubmit="return false">
+    <form  class = "d-flex justify-content-center" action="" onsubmit="return false">
         <div>
             <label for="">City</label>
             <input id="city" type="text">
@@ -24,7 +25,7 @@
     </form>
     
     <button onclick="location.href ='wizard1.html'">Prev</button>
-    <button>Next</button>
+    <button onclick="doNext()">Next</button>
 
     <script>
         class Form{
@@ -37,12 +38,26 @@
         const city = document.querySelector('#city');
         const street = document.querySelector('#street');
         const number = document.querySelector('#number');
+        let details = '';
+        window.addEventListener('load', () =>{
+            const temp = localStorage.getItem('Details string');
+            if(temp){
+                details = JSON.parse(temp);
+
+            }
+            else{
+                window.location.href = 'wizard1.html';
+            }
+
+
+        })
 
         function ValidateCity(city) {
             if(city.length < 3){
                 alert("You have entered an invalid city address!");
                 return false;
             }
+            return true;
                   
 }
         function ValidateStreet(street){
@@ -50,11 +65,13 @@
                 alert("You have entered an invalid street address!");
                 return false;
             } 
+            return true;
 
         }
 
         function ValidateNumber(number){
-            if(number < 1){
+            console.log(number);
+            if(Number(number)< 1){
                 return false;
             }
             return true;
@@ -74,6 +91,12 @@
                 const detailsstring = JSON.stringify(details);
                 localStorage.setItem('Details string', detailsstring);
 
+            }
+        }
+        
+        function doNext (){
+            if(details.part1 && details.part2){
+                window.location.href = "wizard3.html";
             }
         }
 
