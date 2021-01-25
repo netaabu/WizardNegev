@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wizard page 1</title>
+</head>
+<body>
+    <form action="" onsubmit="return false">
+        <div>
+            <label for="">Name</label>
+            <input id="name" type="text">
+        </div>
+        <div>
+            <label for="">Email</label>
+            <input id="email" type="email">
+        </div>
+        <div>
+            <label for="">Birth Date</label>
+            <input id="age"type="date">
+        </div>
+        <button onclick="saveDetails()">Submit</button>
+
+    </form>
+    <button>Next</button>
+    <script>
+        class Form{
+            constructor(part1, part2, part3){
+                this.part1 = part1;
+                this.part2 = part2;
+                this.part3 = part3;
+            }
+        }
+        const name = document.querySelector('#name');
+        const email = document.querySelector('#email');
+        const age = document.querySelector('#age');
+
+        function ValidateEmail(mail) {
+            if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail));
+            {
+                return (true);
+            }
+            alert("You have entered an invalid email address!");
+            return (false);
+}
+        function ValidateName(name){
+            if(name.length < 3){
+                return false;
+            }
+            return true;
+
+        }
+
+        function ValidateBirthDate(date){
+            if(!date){
+                return false;
+            }
+            return true;
+        }
+        function saveDetails(){
+           
+            if(ValidateName(name.value) && ValidateEmail(email.value) && ValidateBirthDate(age.value)){
+                
+                const details = new Form({name: name.value, email: email.value, birthdate: age.value});
+                console.log(details);
+                const detailsstring = JSON.stringify(details);
+                localStorage.setItem('Details string', detailsstring);
+
+            }
+        }
+
+
+    </script>
+</body>name
+</html>
