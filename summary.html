@@ -30,15 +30,7 @@
                 if(!details.part3){
                     window.location.href = 'wizard3.html';
                 }
-
-            }
-            else{
-                window.location.href = 'wizard3.html';
-            }
-
-
-        })
-    container.innerHTML =  `<div>
+                container.innerHTML =  `<div>
             <label for="">Name</label>
             <span>${details.part1.name}</span>
         </div>
@@ -69,5 +61,14 @@
         <div>
             <img src="${details.part3.img}" alt="">
         </div>`
+
+            }
+            else{
+                window.location.href = 'wizard3.html';
+            }
+
+
+        })
+    
 </script>
 </html>
