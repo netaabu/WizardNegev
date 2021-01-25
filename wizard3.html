@@ -39,15 +39,11 @@
             }
         }
         const img = document.querySelector('#img');
-        const hobbies = document.querySelectorAll('checkbox');
+        const hobbies = document.querySelectorAll('input[type="checkbox"]');
         let details = '';
         const chosenHobbies = [];
-        for(const item of hobbies){
-            if(item.checked){
-                chosenHobbies.push(item.value);
-            }
-
-        }
+        
+        
         window.addEventListener('load', () =>{
             const temp = localStorage.getItem('Details string');
             if(temp){
@@ -67,6 +63,14 @@
 
         function saveImg() {
              if(validateImg(img.value)){
+                for(const item of hobbies){
+            
+            if(item.checked){
+                console.log(item.value);
+                chosenHobbies.push(item.value);
+            }
+
+        }
                  details.part3 = {img: img.value, hobbies: chosenHobbies};
                  const detailsstring = JSON.stringify(details);
                  localStorage.setItem('Details string', detailsstring);
